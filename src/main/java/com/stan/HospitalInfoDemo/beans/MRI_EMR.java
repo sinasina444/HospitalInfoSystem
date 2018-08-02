@@ -15,6 +15,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name="mri_emr")
@@ -28,9 +29,11 @@ public class MRI_EMR {
 	private PatientInfo patientInfo;
 	@JoinColumn(name="doctor_id",referencedColumnName="id")
 	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.DETACH)
+	@JsonIgnoreProperties("doctorInfo")
 	private Doctor doctor;
 	@JoinColumn(name="department_id",referencedColumnName="id")
 	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.DETACH)
+	@JsonIgnoreProperties("doctors")
 	private Department department;
 	@Column
 	private String image;
@@ -38,7 +41,7 @@ public class MRI_EMR {
 	private String description;
 	@Column
 	private String diagnosis;
-	@Column
+	@Column(name="testdate")
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Date testDate;
 	

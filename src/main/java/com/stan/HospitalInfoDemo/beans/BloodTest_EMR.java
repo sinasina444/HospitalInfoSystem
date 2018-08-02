@@ -15,6 +15,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name="bloodtest_emr")
@@ -28,6 +29,7 @@ public class BloodTest_EMR {
 	private PatientInfo patientInfo;
 	@JoinColumn(name="doctor_id",referencedColumnName="id")
 	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.DETACH)
+	@JsonIgnoreProperties("doctorInfo")
 	private Doctor doctor;
 	@JoinColumn(name="department_id",referencedColumnName="id")
 	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.DETACH)
@@ -36,8 +38,8 @@ public class BloodTest_EMR {
 	private String description;
 	@Column
 	private String diagnosis;
-	@Column
-	@JsonFormat(pattern = "yyyy-MM-dd")
+	@Column(name="testdate")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date testDate;
 	
 	public BloodTest_EMR(){

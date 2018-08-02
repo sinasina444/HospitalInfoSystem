@@ -27,27 +27,31 @@ public class DrugOrder {
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "DRUGORDER_SEQ_GEN")
 	@SequenceGenerator(name = "DRUGORDER_SEQ_GEN", sequenceName = "DRUGORDER_SEQ", allocationSize = 1)
 	private int id;
-	@Column
-	@JsonFormat(pattern = "yyyy-MM-dd")
-	private Date order_date;
+	@Column(name="orderdate")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	private Date orderDate;
 	
-	@OneToMany(mappedBy = "drugOrder", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "drugOrder", cascade = CascadeType.ALL)
+	@JsonIgnoreProperties("drugOrder")
 	private List<PharmacyOrderProduct> pharmacyOrderProduct;
 	@ManyToOne(fetch = FetchType.EAGER,cascade=CascadeType.DETACH)
 	@JoinColumn(name = "pid")
 	@JsonIgnoreProperties("drugOrder")
 	PatientInfo patientInfo;
-	@OneToOne(mappedBy="drugOrder",fetch=FetchType.EAGER,cascade=CascadeType.ALL)
-	private OutPatient_EMR outPatient_EMR;
+//	@OneToOne(mappedBy="drugOrder",fetch=FetchType.LAZY,cascade=CascadeType.DETACH)
+//	private OutPatient_EMR outPatient_EMR;
 	
 	public DrugOrder() {
 		super();
 	}
-	public DrugOrder(Date order_date, List<PharmacyOrderProduct> pharmacyOrderProduct) {
+
+
+	public DrugOrder(Date orderDate, List<PharmacyOrderProduct> pharmacyOrderProduct) {
 		super();
-		this.order_date = order_date;
+		this.orderDate = orderDate;
 		this.pharmacyOrderProduct = pharmacyOrderProduct;
 	}
+
 
 	public int getId() {
 		return id;
@@ -57,13 +61,17 @@ public class DrugOrder {
 		this.id = id;
 	}
 
-	public Date getOrder_date() {
-		return order_date;
+	
+
+	public Date getOrderDate() {
+		return orderDate;
 	}
 
-	public void setOrder_date(Date order_date) {
-		this.order_date = order_date;
+
+	public void setOrderDate(Date orderDate) {
+		this.orderDate = orderDate;
 	}
+
 
 	public List<PharmacyOrderProduct> getPharmacyOrderProduct() {
 		return pharmacyOrderProduct;
@@ -81,11 +89,14 @@ public class DrugOrder {
 		this.patientInfo = patientInfo;
 	}
 
+
 	@Override
 	public String toString() {
-		return "DrugOrder [id=" + id + ", order_date=" + order_date + ", pharmacyOrderProduct=" + pharmacyOrderProduct
+		return "DrugOrder [id=" + id + ", orderDate=" + orderDate + ", pharmacyOrderProduct=" + pharmacyOrderProduct
 				+ ", patientInfo=" + patientInfo + "]";
 	}
+
+
 	
 	
 }

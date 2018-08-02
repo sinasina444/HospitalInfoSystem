@@ -24,7 +24,7 @@ public class PharmacyOrderProduct {
 	private int id;
 	@Column
 	private int qty;
-	@ManyToOne(fetch = FetchType.EAGER,cascade=CascadeType.DETACH)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "drugorder_id")
 	@JsonIgnoreProperties("pharmacyOrderProduct")
 	private DrugOrder drugOrder;

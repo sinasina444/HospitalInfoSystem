@@ -33,11 +33,11 @@ public class DoctorUser {
 	@OneToOne(mappedBy="doctorUser",cascade=CascadeType.ALL)
 	@JsonIgnoreProperties("doctorUser")
 	DoctorInfo doctorInfo;
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "doctoruser_and_profile", joinColumns = {
 			@JoinColumn(name = "doctor_id", referencedColumnName = "id") }, inverseJoinColumns = {
 					@JoinColumn(name = "doctor_profile_id", referencedColumnName = "id") })
-	private List<DoctorUserProfile> profiles = new ArrayList<DoctorUserProfile>();
+	private List<DoctorUserProfile> doctorUserProfiles = new ArrayList<DoctorUserProfile>();
 	
 	public DoctorUser() {
 		super();
@@ -78,19 +78,23 @@ public class DoctorUser {
 	}
 	
 	
-	public List<DoctorUserProfile> getProfiles() {
-		return profiles;
+	
+
+	public List<DoctorUserProfile> getDoctorUserProfiles() {
+		return doctorUserProfiles;
 	}
 
-	public void setProfiles(List<DoctorUserProfile> profiles) {
-		this.profiles = profiles;
+	public void setDoctorUserProfiles(List<DoctorUserProfile> doctorUserProfiles) {
+		this.doctorUserProfiles = doctorUserProfiles;
 	}
 
 	@Override
 	public String toString() {
 		return "DoctorUser [id=" + id + ", username=" + username + ", password=" + password + ", doctorInfo="
-				+ doctorInfo + ", profiles=" + profiles + "]";
+				+ doctorInfo + ", doctorUserProfiles=" + doctorUserProfiles + "]";
 	}
+
+	
 
 	
 	

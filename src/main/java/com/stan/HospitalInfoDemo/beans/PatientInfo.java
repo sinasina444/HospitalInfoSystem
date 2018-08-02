@@ -21,7 +21,7 @@ public class PatientInfo {
 	@SequenceGenerator(name = "PATIENTINFO_SEQ_GEN", sequenceName = "PATIENTINFO_SEQ", allocationSize = 1)
 	int id;
 	@JoinColumn(name="login_id")
-	@OneToOne()
+	@OneToOne
 	PatientUser patientUser;
 	@Column(name="firstname")
 	private String firstName;
