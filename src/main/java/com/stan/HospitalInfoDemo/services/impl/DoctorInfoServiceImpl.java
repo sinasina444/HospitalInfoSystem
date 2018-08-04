@@ -3,7 +3,6 @@ package com.stan.HospitalInfoDemo.services.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.stan.HospitalInfoDemo.beans.DoctorInfo;
-import com.stan.HospitalInfoDemo.beans.DoctorUser;
 import com.stan.HospitalInfoDemo.daos.DoctorInfoDao;
 import com.stan.HospitalInfoDemo.services.DoctorInfoService;
 

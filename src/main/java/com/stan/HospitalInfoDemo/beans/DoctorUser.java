@@ -1,6 +1,7 @@
 package com.stan.HospitalInfoDemo.beans;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -17,11 +18,15 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name="doctoruser")
-public class DoctorUser {
+public class DoctorUser implements UserDetails{
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "DOCTORUSER_SEQ_GEN")
 	@SequenceGenerator(name = "DOCTORUSER_SEQ_GEN", sequenceName = "DOCTORUSER_SEQ", allocationSize = 1)
@@ -33,7 +38,7 @@ public class DoctorUser {
 	@OneToOne(mappedBy="doctorUser",cascade=CascadeType.ALL)
 	@JsonIgnoreProperties("doctorUser")
 	DoctorInfo doctorInfo;
-	@ManyToMany(fetch = FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "doctoruser_and_profile", joinColumns = {
 			@JoinColumn(name = "doctor_id", referencedColumnName = "id") }, inverseJoinColumns = {
 					@JoinColumn(name = "doctor_profile_id", referencedColumnName = "id") })
@@ -92,6 +97,36 @@ public class DoctorUser {
 	public String toString() {
 		return "DoctorUser [id=" + id + ", username=" + username + ", password=" + password + ", doctorInfo="
 				+ doctorInfo + ", doctorUserProfiles=" + doctorUserProfiles + "]";
+	}
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		// TODO Auto-generated method stub
+		return doctorUserProfiles;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		return true;
 	}
 
 	

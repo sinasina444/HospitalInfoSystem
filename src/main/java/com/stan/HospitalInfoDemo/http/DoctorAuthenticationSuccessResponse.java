@@ -1,19 +1,20 @@
 package com.stan.HospitalInfoDemo.http;
 
-import com.stan.HospitalInfoDemo.beans.Doctor;
+import com.stan.HospitalInfoDemo.beans.DoctorUser;
 
 public class DoctorAuthenticationSuccessResponse extends Response{
-	private Doctor doctor;
-	public DoctorAuthenticationSuccessResponse(boolean success,int code, String message, Doctor doctor) {
+	private DoctorUser doctorUser;
+	public DoctorAuthenticationSuccessResponse(boolean success,int code, String message, DoctorUser doctorUser) {
 		super(success,code,message);
-		this.doctor = doctor;
+		this.doctorUser = doctorUser;
 	}
-	public Doctor getDoctor() {
-		return doctor;
+	public DoctorUser getDoctorUser() {
+		return doctorUser;
 	}
-	public void setDoctor(Doctor doctor) {
-		this.doctor = doctor;
+	public void setDoctorUser(DoctorUser doctorUser) {
+		this.doctorUser = doctorUser;
 	}
+
 	
 	
 }

@@ -1,8 +1,13 @@
 package com.stan.HospitalInfoDemo.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,8 +26,23 @@ public class DoctorUserController {
 	DoctorUserService doctorUserService;
 	
 	@PostMapping
-	public Response addDoctorUser(@RequestBody DoctorUser doctorUser) {
-		return doctorUserService.addDoctorUser(doctorUser);
+	public Response register(@RequestBody DoctorUser doctorUser) {
+		return doctorUserService.register(doctorUser);
+	}
+	
+	@GetMapping
+	public List<DoctorUser> getAllUsers() {
+		return doctorUserDao.findAll();
+	}
+	
+	@PutMapping
+	public Response changePassword(@RequestBody DoctorUser doctorUser,Authentication authentication) {
+		return doctorUserService.changePassword(doctorUser, authentication);
+	}
+	
+	@DeleteMapping
+	public Response deleteUser(int id) {
+		return doctorUserService.deleteUser(id);
 	}
 	
 	@GetMapping("/heihei")
