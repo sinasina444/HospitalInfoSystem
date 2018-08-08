@@ -42,7 +42,6 @@ public class DrugOrderServiceImpl implements DrugOrderService{
 			//Date current_date = new java.sql.Date(new java.util.Date().getTime());
 			Date currentDate = new Date();
 			drugOrder.setOrderDate(currentDate);
-			
 //			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 //			simpleDateFormat.format(current_date.getTime());
 			//drugOrder.setOrder_date(simpleDateFormat.format(current_date.getTime()));		

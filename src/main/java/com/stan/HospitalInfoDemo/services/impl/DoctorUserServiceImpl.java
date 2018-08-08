@@ -29,22 +29,27 @@ public class DoctorUserServiceImpl implements DoctorUserService{
 	@Autowired
 	EmailProducer emailProducer;
 
+
 	@Override
 	public Response addDoctorUser(DoctorUser doctorUser) {
 		doctorUser.setPassword(passwordEncoder.encode(doctorUser.getPassword()));
 		DoctorInfo doctorInfo = doctorUser.getDoctorInfo();
-		Doctor doctor = doctorInfo.getDoctor();
+		//Doctor doctor = doctorInfo.getDoctor();
 		List<DoctorUserProfile> doctorUserProfiles = doctorUser.getDoctorUserProfiles();
+		if(doctorUserProfiles.isEmpty()) {
+			doctorUserProfiles.add(new DoctorUserProfile("ROLE_DOCTOR"));
+		}
 		//doctorUserProfiles.forEach(action);
 		doctorUser.setDoctorUserProfiles(doctorUserProfiles);
 		doctorInfo.setDoctorUser(doctorUser);
-		doctor.setDoctorInfo(doctorInfo);
+		//doctor.setDoctorInfo(doctorInfo);
 		//doctorUser.setDoctorInfo(doctorInfo);
 		return new DoctorUserResponse(true,doctorUserDao.save(doctorUser));
 	}
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		System.out.println("*************loadUsername: " + username);
 		DoctorUser doctorUser = doctorUserDao.findByUsername(username);
 		if(doctorUser == null) {
 			throw new UsernameNotFoundException("DoctorUser: " + username + " was not found in the database");

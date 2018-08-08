@@ -33,9 +33,9 @@ public class DoctorInfo {
 	int cellphone;
 	@Column
 	String address;
-	@OneToOne(mappedBy="doctorInfo",cascade=CascadeType.ALL)
-	@JsonIgnoreProperties("doctorInfo")
-	Doctor doctor;
+//	@OneToOne(mappedBy="doctorInfo",cascade=CascadeType.ALL)
+//	@JsonIgnoreProperties("doctorInfo")
+//	Doctor doctor;
 
 	public DoctorInfo(){
 		super();
@@ -48,7 +48,7 @@ public class DoctorInfo {
 		this.sex = sex;
 		this.cellphone = cellphone;
 		this.address = address;
-		this.doctor = doctor;
+		//this.doctor = doctor;
 	}
 
 	public int getId() {
@@ -107,20 +107,20 @@ public class DoctorInfo {
 		this.address = address;
 	}
 
-	public void setDoctor(Doctor doctor) {
-		this.doctor = doctor;
-	}
-	
-	public Doctor getDoctor() {
-		return doctor;
-	}
+//	public void setDoctor(Doctor doctor) {
+//		this.doctor = doctor;
+//	}
+//	
+//	public Doctor getDoctor() {
+//		return doctor;
+//	}
 
 
 
 	@Override
 	public String toString() {
 		return "DoctorInfo [id=" + id + ", doctorUser=" + doctorUser + ", firstName=" + firstName + ", lastName="
-				+ lastName + ", sex=" + sex + ", cellphone=" + cellphone + ", address=" + address + ", doctor=" + doctor
+				+ lastName + ", sex=" + sex + ", cellphone=" + cellphone + ", address=" + address 
 				+ "]";
 	}
 	

@@ -23,8 +23,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@Entity
 @Table(name="doctoruser")
+@Entity
 public class DoctorUser implements UserDetails{
 	private static final long serialVersionUID = 1L;
 	@Id
@@ -38,7 +38,7 @@ public class DoctorUser implements UserDetails{
 	@OneToOne(mappedBy="doctorUser",cascade=CascadeType.ALL)
 	@JsonIgnoreProperties("doctorUser")
 	DoctorInfo doctorInfo;
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "doctoruser_and_profile", joinColumns = {
 			@JoinColumn(name = "doctor_id", referencedColumnName = "id") }, inverseJoinColumns = {
 					@JoinColumn(name = "doctor_profile_id", referencedColumnName = "id") })

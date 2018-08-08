@@ -35,6 +35,11 @@ public class DoctorUserProfile implements GrantedAuthority {
 		this.id = id;
 		this.type = type;
 	}
+	
+	public DoctorUserProfile(String type) {
+		super();
+		this.type = type;
+	}
 
 	public int getId() {
 		return id;

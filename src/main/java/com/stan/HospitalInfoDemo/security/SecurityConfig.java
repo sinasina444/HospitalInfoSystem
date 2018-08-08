@@ -65,15 +65,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
             .formLogin()
 				.permitAll()
-				.loginProcessingUrl("/login")
+				.loginProcessingUrl("/doctorLogin")
 				.successHandler(doctorAuthenticationSuccessHandlerImpl)
 			    .failureHandler(authenticationFailureHandlerImpl)
 				.usernameParameter("username").passwordParameter("password")
 				.and()
 			.logout()
 				.permitAll()
-				.logoutUrl("/logout")
+				.logoutUrl("/doctorUsers/logout")
 				.logoutSuccessHandler(logoutSuccessHandlerImpl)
+				.deleteCookies("JSESSIONID")
 				.and()
 			.rememberMe();
     }

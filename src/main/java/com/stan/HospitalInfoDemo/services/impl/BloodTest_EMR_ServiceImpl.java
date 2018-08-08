@@ -16,6 +16,7 @@ import com.stan.HospitalInfoDemo.http.BloodTest_EMRResponse;
 import com.stan.HospitalInfoDemo.http.Response;
 import com.stan.HospitalInfoDemo.services.BloodTest_EMR_Service;
 
+
 @Service
 public class BloodTest_EMR_ServiceImpl implements BloodTest_EMR_Service {
 	@Autowired
