@@ -18,6 +18,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -38,7 +40,8 @@ public class DoctorUser implements UserDetails{
 	@OneToOne(mappedBy="doctorUser",cascade=CascadeType.ALL)
 	@JsonIgnoreProperties("doctorUser")
 	DoctorInfo doctorInfo;
-	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@ManyToMany(cascade=CascadeType.DETACH)
 	@JoinTable(name = "doctoruser_and_profile", joinColumns = {
 			@JoinColumn(name = "doctor_id", referencedColumnName = "id") }, inverseJoinColumns = {
 					@JoinColumn(name = "doctor_profile_id", referencedColumnName = "id") })

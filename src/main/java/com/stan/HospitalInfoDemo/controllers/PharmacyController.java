@@ -12,7 +12,7 @@ import com.stan.HospitalInfoDemo.http.Response;
 import com.stan.HospitalInfoDemo.services.PharmacyService;
 
 @RestController()
-@RequestMapping("/pharmacy")
+@RequestMapping("/stanDomain/pharmacy")
 public class PharmacyController {
 	@Autowired
 	PharmacyDao pharmacyDao;

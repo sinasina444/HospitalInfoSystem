@@ -37,7 +37,17 @@ public class PatientInfo {
 	String id_card;
 	@Column
 	String address;
+	@Column
+	String email;
 	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	public PatientInfo(){
 		super();
 	}
@@ -110,12 +120,14 @@ public class PatientInfo {
 	public void setAddress(String address) {
 		this.address = address;
 	}
+
 	@Override
 	public String toString() {
 		return "PatientInfo [id=" + id + ", patientUser=" + patientUser + ", firstName=" + firstName + ", lastName="
 				+ lastName + ", age=" + age + ", sex=" + sex + ", cellphone=" + cellphone + ", id_card=" + id_card
-				+ ", address=" + address + "]";
+				+ ", address=" + address + ", email=" + email + "]";
 	}
+
 	
 	
 }

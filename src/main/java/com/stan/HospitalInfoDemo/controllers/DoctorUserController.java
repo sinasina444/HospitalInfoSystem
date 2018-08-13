@@ -18,7 +18,7 @@ import com.stan.HospitalInfoDemo.http.Response;
 import com.stan.HospitalInfoDemo.services.DoctorUserService;
 
 @RestController()
-@RequestMapping("/doctorUsers")
+@RequestMapping("/stanDomain/doctorUsers")
 public class DoctorUserController {
 	@Autowired
 	DoctorUserDao doctorUserDao;
@@ -45,9 +45,4 @@ public class DoctorUserController {
 		return doctorUserService.deleteUser(id);
 	}
 	
-	@GetMapping("/heihei")
-	public String hello() {
-		System.out.println("this is heihei!");
-		return "heihei";
-	}
 }

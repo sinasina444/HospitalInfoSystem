@@ -5,4 +5,5 @@ import com.stan.HospitalInfoDemo.beans.DoctorUser;
 
 public interface DoctorInfoService {
 	public void addDoctorInfo(DoctorInfo doctorInfo);
+	public DoctorInfo getDocInfoByUsername(String username);
 }

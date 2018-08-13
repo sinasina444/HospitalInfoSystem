@@ -8,9 +8,11 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.springframework.security.core.GrantedAuthority;
+
 @Entity
 @Table(name="patientuser_profile")
-public class PatientUserProfile {
+public class PatientUserProfile implements GrantedAuthority {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "PATIENTUSER_PROFILE_SEQ_GEN")
 	@SequenceGenerator(name = "PATIENTUSER_PROFILE_SEQ_GEN", sequenceName = "PATIENTUSER_PROFILE_SEQ", allocationSize = 1)
@@ -30,6 +32,12 @@ public class PatientUserProfile {
 		this.id = id;
 		this.type = type;
 	}
+	
+	public PatientUserProfile(String type) {
+		super();
+		this.type = type;
+	}
+	
 	public int getId() {
 		return id;
 	}
@@ -45,6 +53,10 @@ public class PatientUserProfile {
 	@Override
 	public String toString() {
 		return "PatientUserProfile [id=" + id + ", type=" + type + "]";
+	}
+	@Override
+	public String getAuthority() {
+		return type;
 	}
 	
 	

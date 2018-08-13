@@ -12,7 +12,7 @@ import com.stan.HospitalInfoDemo.http.Response;
 import com.stan.HospitalInfoDemo.services.DepartmentService;
 
 @RestController()
-@RequestMapping("/departments")
+@RequestMapping("/stanDomain/departments")
 public class DepartmentController {
 	@Autowired
 	DepartmentDao departmentDao;

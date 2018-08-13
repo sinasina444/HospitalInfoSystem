@@ -1,5 +1,6 @@
 package com.stan.HospitalInfoDemo.services.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,11 +10,11 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.stan.HospitalInfoDemo.beans.Doctor;
 import com.stan.HospitalInfoDemo.beans.DoctorInfo;
 import com.stan.HospitalInfoDemo.beans.DoctorUser;
 import com.stan.HospitalInfoDemo.beans.DoctorUserProfile;
 import com.stan.HospitalInfoDemo.daos.DoctorUserDao;
+import com.stan.HospitalInfoDemo.daos.DoctorUserProfileDao;
 import com.stan.HospitalInfoDemo.http.DoctorUserResponse;
 import com.stan.HospitalInfoDemo.http.Response;
 import com.stan.HospitalInfoDemo.jms.EmailProducer;
@@ -28,22 +29,26 @@ public class DoctorUserServiceImpl implements DoctorUserService{
 	PasswordEncoder passwordEncoder;
 	@Autowired
 	EmailProducer emailProducer;
+	@Autowired
+	DoctorUserProfileDao doctorUserProfileDao;
 
 
 	@Override
 	public Response addDoctorUser(DoctorUser doctorUser) {
 		doctorUser.setPassword(passwordEncoder.encode(doctorUser.getPassword()));
 		DoctorInfo doctorInfo = doctorUser.getDoctorInfo();
-		//Doctor doctor = doctorInfo.getDoctor();
 		List<DoctorUserProfile> doctorUserProfiles = doctorUser.getDoctorUserProfiles();
+		List<DoctorUserProfile> newDoctorUserProfiles = new ArrayList<>();
 		if(doctorUserProfiles.isEmpty()) {
-			doctorUserProfiles.add(new DoctorUserProfile("ROLE_DOCTOR"));
+			newDoctorUserProfiles.add(doctorUserProfileDao.findByType("ROLE_GUEST"));
+		}else {
+			doctorUserProfiles.forEach((doctorUserProfile)->{
+				newDoctorUserProfiles.add(doctorUserProfileDao.findByType(doctorUserProfile.getType()));
+			});
 		}
 		//doctorUserProfiles.forEach(action);
-		doctorUser.setDoctorUserProfiles(doctorUserProfiles);
+		doctorUser.setDoctorUserProfiles(newDoctorUserProfiles);
 		doctorInfo.setDoctorUser(doctorUser);
-		//doctor.setDoctorInfo(doctorInfo);
-		//doctorUser.setDoctorInfo(doctorInfo);
 		return new DoctorUserResponse(true,doctorUserDao.save(doctorUser));
 	}
 

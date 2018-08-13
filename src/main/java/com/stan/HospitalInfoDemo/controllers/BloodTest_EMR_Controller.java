@@ -11,7 +11,7 @@ import com.stan.HospitalInfoDemo.http.Response;
 import com.stan.HospitalInfoDemo.services.BloodTest_EMR_Service;
 
 @RestController
-@RequestMapping("/bloodTestEMR")
+@RequestMapping("/stanDomain/bloodTestEMR")
 public class BloodTest_EMR_Controller {
 	@Autowired
 	BloodTest_EMR_Service bloodTestService;

@@ -24,7 +24,7 @@ public class Department {
 	private String departmentName;
 	@Column(name="departmentinfo")
 	private String departmentInfo;
-	@OneToMany(mappedBy="department",fetch=FetchType.EAGER,cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="department",fetch=FetchType.LAZY,cascade=CascadeType.DETACH)
 	private List<Doctor> doctors;
 	
 	public Department(){

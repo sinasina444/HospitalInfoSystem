@@ -21,7 +21,7 @@ public class DoctorInfo {
 	@SequenceGenerator(name = "DOCTORINFO_SEQ_GEN", sequenceName = "DOCTORINFO_SEQ", allocationSize = 1)
 	int id;
 	@JoinColumn(name="login_id")
-	@OneToOne()
+	@OneToOne(cascade = CascadeType.DETACH)
 	DoctorUser doctorUser;
 	@Column(name="firstname")
 	private String firstName;

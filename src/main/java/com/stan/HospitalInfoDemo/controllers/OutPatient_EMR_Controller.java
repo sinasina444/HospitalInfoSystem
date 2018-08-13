@@ -11,7 +11,7 @@ import com.stan.HospitalInfoDemo.http.Response;
 import com.stan.HospitalInfoDemo.services.OutPatient_EMR_Serivce;
 
 @RestController
-@RequestMapping("/OutPatientEMR")
+@RequestMapping("/stanDomain/OutPatientEMR")
 public class OutPatient_EMR_Controller {
 	@Autowired
 	OutPatient_EMR_Serivce outPatientService;

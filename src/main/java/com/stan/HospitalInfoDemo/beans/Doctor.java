@@ -23,7 +23,7 @@ public class Doctor {
 	@SequenceGenerator(name = "DOCTOR_SEQ_GEN", sequenceName = "DOCTOR_SEQ", allocationSize = 1)
 	int id;
 	@JoinColumn(name="doctorinfo_id")
-	@OneToOne
+	@OneToOne(fetch=FetchType.EAGER, cascade=CascadeType.MERGE)
 	DoctorInfo doctorInfo;
 	@JoinColumn(name="department_id")
 	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.DETACH)
@@ -33,6 +33,7 @@ public class Doctor {
 	private String position;
 	@Column
 	private double salary;
+
 	
 	public Doctor() {
 		super();
@@ -76,6 +77,7 @@ public class Doctor {
 	public void setSalary(double salary) {
 		this.salary = salary;
 	}
+
 	@Override
 	public String toString() {
 		return "Doctor [id=" + id + ", doctorInfo=" + doctorInfo + ", department=" + department + ", position="

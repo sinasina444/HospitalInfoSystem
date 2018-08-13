@@ -12,7 +12,7 @@ import com.stan.HospitalInfoDemo.http.Response;
 import com.stan.HospitalInfoDemo.services.MRI_EMR_Service;
 
 @RestController
-@RequestMapping("/MRI_EMR")
+@RequestMapping("/stanDomain/MRI_EMR")
 public class MRI_EMR_Controller {
 	@Autowired
 	MRI_EMRDao mriDao;

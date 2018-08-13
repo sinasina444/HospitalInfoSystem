@@ -12,7 +12,7 @@ import com.stan.HospitalInfoDemo.http.Response;
 import com.stan.HospitalInfoDemo.services.PatientUserService;
 
 @RestController
-@RequestMapping("/patientUsers")
+@RequestMapping("/stanDomain/patientUsers")
 public class PatientUserController {
 	@Autowired
 	PatientUserDao patientUserDao;
@@ -21,7 +21,7 @@ public class PatientUserController {
 	
 	@PostMapping
 	Response addPatientUser(@RequestBody PatientUser patientUser) {
-		return patientUserService.addPatientUser(patientUser);
+		return patientUserService.register(patientUser);
 	}
 	
 }

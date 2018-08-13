@@ -11,7 +11,7 @@ import com.stan.HospitalInfoDemo.http.Response;
 import com.stan.HospitalInfoDemo.services.DrugOrderService;
 
 @RestController
-@RequestMapping("/drugOrders")
+@RequestMapping("/stanDomain/drugOrders")
 public class DrugOrderController {
 	@Autowired
 	DrugOrderService drugOrderService;
