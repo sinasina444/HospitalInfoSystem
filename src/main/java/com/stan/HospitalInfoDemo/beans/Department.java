@@ -30,6 +30,11 @@ public class Department {
 	public Department(){
 		super();
 	}
+	
+	public Department(int id) {
+		super();
+		this.id = id;
+	}
 	public Department(String departmentName, String departmentInfo) {
 		super();
 		this.departmentName = departmentName;

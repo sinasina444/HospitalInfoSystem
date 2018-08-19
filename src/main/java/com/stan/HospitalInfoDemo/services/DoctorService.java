@@ -10,5 +10,6 @@ public interface DoctorService {
 	Doctor getDoctorByUsername(String username);
 	Doctor getDoctorByDoctorInfoId(int id);
 	List<Doctor> getAllDoctor();
+	Response updateDoctor(Doctor doctor);
 	
 }

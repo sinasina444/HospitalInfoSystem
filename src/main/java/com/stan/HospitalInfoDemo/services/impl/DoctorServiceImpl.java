@@ -16,6 +16,7 @@ import com.stan.HospitalInfoDemo.daos.DepartmentDao;
 import com.stan.HospitalInfoDemo.daos.DoctorDao;
 import com.stan.HospitalInfoDemo.daos.DoctorInfoDao;
 import com.stan.HospitalInfoDemo.daos.DoctorUserDao;
+import com.stan.HospitalInfoDemo.http.DoctorInfoResponse;
 import com.stan.HospitalInfoDemo.http.DoctorResponse;
 import com.stan.HospitalInfoDemo.http.Response;
 import com.stan.HospitalInfoDemo.services.DoctorService;
@@ -36,11 +37,21 @@ public class DoctorServiceImpl implements DoctorService{
 	public Response addDoctorByUsername(String username, Doctor doctor) {
 		DoctorUser doctorUser = doctorUserDao.findByUsername(username);
 		DoctorInfo doctorInfo = doctorInfoDao.findByDoctorUser(doctorUser);
-		Department department = departmentDao.findById(doctor.getDepartment().getId()).get();
-		doctor.setDepartment(department);
+		//Department department = departmentDao.findById(doctor.getDepartment().getId()).get();
+		
+		//doctor.setDepartment(department);
+		doctor.setDepartment(new Department(2));
 		doctor.setDoctorInfo(doctorInfo);
 		doctorDao.save(doctor);
 		return new DoctorResponse(true,doctor);
+	}
+	
+	@Override
+	public Response updateDoctor(Doctor doctor) {
+		Doctor thisDoctor = doctorDao.findById(doctor.getId()).get();
+		doctor.setDepartment(thisDoctor.getDepartment());
+		doctor.setDoctorInfo(thisDoctor.getDoctorInfo());
+		return new DoctorResponse(true,doctorDao.save(doctor));
 	}
 	
 	@Override

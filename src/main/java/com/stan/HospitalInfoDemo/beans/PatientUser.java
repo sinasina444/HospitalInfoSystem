@@ -49,6 +49,10 @@ public class PatientUser implements UserDetails{
 	public PatientUser(){
 		super();
 	}
+	public PatientUser(String username) {
+		super();
+		this.username = username;
+	}
 	public PatientUser(String username,String password, PatientInfo patientInfo){
 		super();
 		this.username = username;

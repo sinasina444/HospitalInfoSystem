@@ -42,9 +42,8 @@ public class DrugOrder {
 //	private OutPatient_EMR outPatient_EMR;
 	
 	public DrugOrder() {
-		super();
+		super(); 
 	}
-
 
 	public DrugOrder(Date orderDate, List<PharmacyOrderProduct> pharmacyOrderProduct) {
 		super();

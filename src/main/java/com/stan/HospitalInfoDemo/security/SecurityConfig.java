@@ -43,8 +43,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     CorsConfigurationSource corsConfigurationSource() {
 		CorsConfiguration configuration = new CorsConfiguration();
 		//configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
-        configuration.addAllowedOrigin("*"); // You should only set trusted site here. e.g. http://localhost:4200 means only this site can access.
-        configuration.setAllowedMethods(Arrays.asList("GET","POST","PUT","DELETE","HEAD","OPTIONS"));
+        //configuration.addAllowedOrigin("http://localhost:4201"); // You should only set trusted site here. e.g. http://localhost:4200 means only this site can access.
+        configuration.addAllowedOrigin("*");
+		configuration.setAllowedMethods(Arrays.asList("GET","POST","PUT","DELETE","HEAD","OPTIONS"));
         configuration.addAllowedHeader("*");
         configuration.setAllowCredentials(true);
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
@@ -97,7 +98,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	        		.cors() // cors config.
 	        		.and()
 	        		//.requestMatchers("/stanDomain/doctor*","/stanDomain/doctor*/*")
-	        	.requestMatchers().antMatchers("/stanDomain/doctor*","/stanDomain/doctor*/*","/stanDomain/doctor*/*/*")
+	        	.requestMatchers().antMatchers("/stanDomain/doc*","/stanDomain/doc*/*","/stanDomain/doc*/*/*")
 	        	.and()
 	            .authorizeRequests()
 	            	//.antMatchers("/stanDomain/doctor*").permitAll()
@@ -119,7 +120,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 					.and()
 				.logout()
 					.permitAll()
-					.logoutUrl("/stanDomain/doctorUsers/logout")
+					.logoutUrl("/stanDomain/doctorLogout")
 					.logoutSuccessHandler(logoutSuccessHandlerImpl)
 					.deleteCookies("JSESSIONID")
 					.and()
@@ -188,7 +189,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	        http.csrf().disable()
 	        		.cors() // cors config.
 	        		.and()
-	        	.requestMatchers().antMatchers("/stanDomain/patient*","/stanDomain/patient*/*","/stanDomain/patient*/*/*")
+	        	.requestMatchers().antMatchers("/stanDomain/pat*","/stanDomain/pat*/*","/stanDomain/pat*/*/*")
 	        	.and()
 	            .authorizeRequests()
 //	            	.antMatchers("/index.html", "/bloodTestEMR", "/departments").permitAll()
@@ -210,7 +211,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 					.and()
 				.logout()
 					.permitAll()
-					.logoutUrl("/stanDomain/patientUsers/logout")
+					.logoutUrl("/stanDomain/patientLogout")
 					.logoutSuccessHandler(logoutSuccessHandlerImpl)
 					.deleteCookies("JSESSIONID")
 					.and()

@@ -18,7 +18,7 @@ public class AuthenticationFailureHandlerImpl extends SimpleUrlAuthenticationFai
 	@Override
 	public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
 			AuthenticationException exception) throws IOException, ServletException {
-		DoctorSecurityUtils.sendResponse(response, HttpServletResponse.SC_OK, "Login failed", exception);
+		DoctorSecurityUtils.sendResponse(response, HttpServletResponse.SC_UNAUTHORIZED, "Login failed", exception);
 	}
 
 }

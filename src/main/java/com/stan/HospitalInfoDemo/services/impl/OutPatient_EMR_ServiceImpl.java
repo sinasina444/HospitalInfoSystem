@@ -39,7 +39,8 @@ public class OutPatient_EMR_ServiceImpl implements OutPatient_EMR_Serivce{
 			Doctor doctor = doctorDao.findById(outPatient_EMR.getDoctor().getId()).get();
 			Department department = doctor.getDepartment();
 			outPatient_EMR.setDoctor(doctor);
-			outPatient_EMR.setDepartment(department);
+			//outPatient_EMR.setDepartment(department);
+			outPatient_EMR.setDepartment(new Department(2));
 			//patientInfo
 			PatientInfo patientInfo = patientInfoDao.findById(outPatient_EMR.getPatientInfo().getId()).get();
 			outPatient_EMR.setPatientInfo(patientInfo);

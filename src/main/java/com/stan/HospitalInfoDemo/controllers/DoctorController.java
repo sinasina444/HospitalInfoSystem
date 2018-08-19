@@ -63,6 +63,11 @@ public class DoctorController {
 	}
 	
 	@PutMapping
+	public Response updateDoctor(@RequestBody Doctor doctor) {
+		return doctorService.updateDoctor(doctor);
+	}
+	
+	@PutMapping("/doctorInfo")
 	public Response updateDoctorInfo(@RequestParam DoctorInfo doctorInfo) {
 		DoctorInfo newDocInfo = doctorInfoDao.findById(doctorInfo.getId()).get();
 		if(newDocInfo == null) {
@@ -75,4 +80,5 @@ public class DoctorController {
 		newDocInfo.setAddress(doctorInfo.getAddress());
 		return new DoctorInfoResponse(true,newDocInfo);
 	}
+	
 }
