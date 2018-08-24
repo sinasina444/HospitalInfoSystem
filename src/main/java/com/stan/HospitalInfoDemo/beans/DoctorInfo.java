@@ -22,6 +22,7 @@ public class DoctorInfo {
 	int id;
 	@JoinColumn(name="login_id")
 	@OneToOne(cascade = CascadeType.DETACH)
+	@JsonIgnoreProperties("doctorInfo")
 	DoctorUser doctorUser;
 	@Column(name="firstname")
 	private String firstName;
