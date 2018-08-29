@@ -24,5 +24,7 @@ public class PharmacyHandlerInterceptor extends HandlerInterceptorAdapter {
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
 		LOGGER.info("User " + request.getRemoteAddr() + " accessed your pharmacy.");
+		LOGGER.info("###############");
+
 	}
 }
